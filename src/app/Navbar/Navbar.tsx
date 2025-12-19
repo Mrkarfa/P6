@@ -58,14 +58,14 @@ const NavLink = ({ name, href }: NavLinkProps) => {
     <a
       ref={linkRef}
       href={href}
-      className="relative overflow-hidden h-5 inline-flex items-center text-sm text-neutral-400 hover:text-white transition-colors"
+      className="relative overflow-hidden h-5 inline-flex items-center text-sm text-foreground transition-colors"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       <span ref={topTextRef} className="block">
         {name}
       </span>
-      <span ref={bottomTextRef} className="absolute top-full left-0 text-white">
+      <span ref={bottomTextRef} className="absolute top-full left-0 text-foreground">
         {name}
       </span>
     </a>
@@ -116,7 +116,32 @@ const Navbar = () => {
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, []);
 
+  // Play click sound using Web Audio API
+  const playClickSound = () => {
+    const audioContext = new (window.AudioContext ||
+      (window as typeof window & { webkitAudioContext: typeof AudioContext })
+        .webkitAudioContext)();
+    const oscillator = audioContext.createOscillator();
+    const gainNode = audioContext.createGain();
+
+    oscillator.connect(gainNode);
+    gainNode.connect(audioContext.destination);
+
+    oscillator.frequency.value = 800;
+    oscillator.type = "sine";
+
+    gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+    gainNode.gain.exponentialRampToValueAtTime(
+      0.01,
+      audioContext.currentTime + 0.1
+    );
+
+    oscillator.start(audioContext.currentTime);
+    oscillator.stop(audioContext.currentTime + 0.1);
+  };
+
   const toggleTheme = () => {
+    playClickSound();
     setIsDarkMode(!isDarkMode);
     document.documentElement.classList.toggle("dark");
   };
@@ -125,7 +150,7 @@ const Navbar = () => {
     <>
       <nav
         ref={navRef}
-        className="fixed top-0 left-0 right-0 z-50 bg-neutral-950/80 backdrop-blur-md border-b border-neutral-800"
+        className="fixed top-0 left-0 right-0 z-50 bg-background backdrop-blur-md"
       >
         <div className="max-w-2xl mx-auto px-4">
           <div className="flex items-center justify-between h-14">
@@ -142,7 +167,7 @@ const Navbar = () => {
                 variant="ghost"
                 size="icon"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="text-neutral-400 hover:text-white hover:bg-neutral-800"
+                className="text-foreground"
               >
                 {isMobileMenuOpen ? (
                   <X className="h-5 w-5" />
@@ -157,11 +182,11 @@ const Navbar = () => {
               {/* Search Box */}
               <button
                 onClick={() => setIsSearchOpen(true)}
-                className="hidden sm:flex items-center gap-2 px-3 py-1.5 text-sm text-neutral-500 bg-neutral-900 border border-neutral-800 rounded-lg hover:border-neutral-700 transition-colors"
+                className="hidden sm:flex items-center gap-2 px-3 py-1.5 text-sm text-neutral-500 bg-background border border-background rounded-lg hover:border-foreground transition-colors"
               >
                 <Search className="h-4 w-4" />
                 <span className="hidden lg:inline">Search...</span>
-                <kbd className="hidden sm:inline-flex items-center gap-1 px-1.5 py-0.5 text-xs font-mono text-neutral-500 bg-neutral-800 rounded">
+                <kbd className="hidden sm:inline-flex items-center gap-1 px-1.5 py-0.5 text-xs font-mono text-neutral-500 bg-background rounded">
                   <span className="text-xs">⌘</span>K
                 </kbd>
               </button>
@@ -175,7 +200,7 @@ const Navbar = () => {
                 variant="ghost"
                 size="icon"
                 onClick={toggleTheme}
-                className="text-neutral-400 hover:text-white hover:bg-neutral-800"
+                className="text-foreground hover:text-foreground hover:bg-background"
               >
                 {isDarkMode ? (
                   <Sun className="h-4 w-4" />
@@ -190,14 +215,14 @@ const Navbar = () => {
           {isMobileMenuOpen && (
             <div
               ref={mobileMenuRef}
-              className="md:hidden py-4 border-t border-neutral-800"
+              className="md:hidden py-4 border-t border-background"
             >
               <div className="flex flex-col gap-4">
                 {navLinks.map((link) => (
                   <a
                     key={link.name}
                     href={link.href}
-                    className="text-sm text-neutral-400 hover:text-white transition-colors"
+                    className="text-sm text-foreground hover:text-foreground transition-colors"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {link.name}
@@ -209,7 +234,7 @@ const Navbar = () => {
                     setIsMobileMenuOpen(false);
                     setIsSearchOpen(true);
                   }}
-                  className="flex items-center gap-2 px-3 py-2 text-sm text-neutral-500 bg-neutral-900 border border-neutral-800 rounded-lg"
+                  className="flex items-center gap-2 px-3 py-2 text-sm text-foreground bg-background border border-background rounded-lg"
                 >
                   <Search className="h-4 w-4" />
                   <span>Search...</span>

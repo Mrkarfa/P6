@@ -62,13 +62,13 @@ const About = () => {
     <section
       id="about"
       ref={sectionRef}
-      className="min-h-screen bg-neutral-950 text-white py-4 px-4"
+      className="min-h-screen bg-background text-foreground relative w-full py-20 px-4 md:px-8 lg:px-16"
     >
       <div className="max-w-2xl mx-auto">
         {/* About Heading */}
         <h2
           ref={headingRef}
-          className="text-3xl md:text-4xl font-semibold mb-8 text-neutral-100"
+          className="text-3xl md:text-4xl font-semibold mb-8 text-foreground"
         >
           <ShimmeringText text="About" />
         </h2>
@@ -76,17 +76,17 @@ const About = () => {
         {/* About Content List */}
         <ul
           ref={listRef}
-          className="space-y-4 text-sm font-mono md:text-base text-neutral-400 leading-relaxed"
+          className="space-y-4 text-sm font-mono md:text-base text-foreground leading-relaxed"
         >
           {/* Item 1 */}
           <li className="about-list-item flex items-start gap-3">
-            <span className="text-neutral-600 mt-1.5">○</span>
+            <span className="text-foreground mt-1.5">○</span>
             <span>
-              <span className="text-neutral-200 font-medium">
+              <span className="text-foreground font-medium">
                 Design Engineer
               </span>{" "}
               with{" "}
-              <span className="text-neutral-200 font-medium">
+              <span className="text-foreground font-medium">
                 5+ years of experience
               </span>
               , known for pixel-perfect execution and strong attention to small
@@ -96,15 +96,13 @@ const About = () => {
 
           {/* Item 2 */}
           <li className="about-list-item flex items-start gap-3">
-            <span className="text-neutral-600 mt-1.5">○</span>
+            <span className="text-foreground mt-1.5">○</span>
             <span>
               Skilled in{" "}
-              <span className="text-neutral-200 font-mono text-sm">
-                Next.js
-              </span>
+              <span className="text-foreground font-mono text-sm">Next.js</span>
+              , <span className="text-foreground font-mono text-sm">React</span>
               ,{" "}
-              <span className="text-neutral-200 font-mono text-sm">React</span>,{" "}
-              <span className="text-neutral-200 font-mono text-sm">
+              <span className="text-foreground font-mono text-sm">
                 TypeScript
               </span>
               , and modern front-end technologies; building high-quality,
@@ -114,7 +112,7 @@ const About = () => {
 
           {/* Item 3 */}
           <li className="about-list-item flex items-start gap-3">
-            <span className="text-neutral-600 mt-1.5">○</span>
+            <span className="text-foreground mt-1.5">○</span>
             <span>
               Passionate about exploring new technologies and turning ideas into
               reality through polished, thoughtfully crafted personal projects.
@@ -123,7 +121,7 @@ const About = () => {
 
           {/* Item 4 - ZaDark */}
           <li className="about-list-item flex items-start gap-3">
-            <span className="text-neutral-600 mt-1.5">○</span>
+            <span className="text-foreground mt-1.5">○</span>
             <div className="flex-1">
               <span>
                 Creator of{" "}
@@ -131,7 +129,7 @@ const About = () => {
                   href="https://zadark.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-neutral-200 underline underline-offset-2 hover:text-white transition-colors"
+                  className="text-foreground underline underline-offset-2 hover:text-white transition-colors"
                 >
                   ZaDark
                 </a>{" "}
@@ -140,30 +138,30 @@ const About = () => {
               {/* Sub-list for ZaDark stats */}
               <ul className="mt-3 space-y-2 pl-4">
                 <li className="flex items-start gap-3">
-                  <span className="text-neutral-700 mt-1">○</span>
+                  <span className="text-foreground mt-1">○</span>
                   <span>
-                    <span className="text-neutral-200 font-medium">80k+</span>{" "}
+                    <span className="text-foreground font-medium">80k+</span>{" "}
                     downloads on{" "}
                     <a
                       href="https://sourceforge.net/projects/nicedark/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-neutral-200 underline underline-offset-2 hover:text-white transition-colors"
+                      className="text-foreground underline underline-offset-2 hover:text-white transition-colors"
                     >
                       SourceForge
                     </a>
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-neutral-700 mt-1">○</span>
+                  <span className="text-foreground mt-1">○</span>
                   <span>
-                    <span className="text-neutral-200 font-medium">30k+</span>{" "}
+                    <span className="text-foreground font-medium">30k+</span>{" "}
                     active users on the{" "}
                     <a
                       href="https://chrome.google.com/webstore"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-neutral-200 underline underline-offset-2 hover:text-white transition-colors"
+                      className="text-foreground underline underline-offset-2 hover:text-white transition-colors"
                     >
                       Chrome Web Store
                     </a>
@@ -175,7 +173,7 @@ const About = () => {
 
           {/* Item 5 - React Wheel Picker */}
           <li className="about-list-item flex items-start gap-3">
-            <span className="text-neutral-600 mt-1.5">○</span>
+            <span className="text-foreground mt-1.5">○</span>
             <div className="flex-1">
               <span>
                 Creator of{" "}
@@ -183,7 +181,7 @@ const About = () => {
                   href="https://www.npmjs.com/package/react-wheel-picker"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-neutral-200 underline underline-offset-2 hover:text-white transition-colors"
+                  className="text-foreground underline underline-offset-2 hover:text-white transition-colors"
                 >
                   React Wheel Picker
                 </a>
@@ -192,29 +190,29 @@ const About = () => {
               {/* Sub-list for React Wheel Picker stats */}
               <ul className="mt-3 space-y-2 pl-4">
                 <li className="flex items-start gap-3">
-                  <span className="text-neutral-700 mt-1">○</span>
+                  <span className="text-foreground mt-1">○</span>
                   <span>
-                    <span className="text-neutral-200 font-medium">10k+</span>{" "}
+                    <span className="text-foreground font-medium">10k+</span>{" "}
                     weekly downloads on{" "}
                     <a
                       href="https://www.npmjs.com"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-neutral-200 underline underline-offset-2 hover:text-white transition-colors"
+                      className="text-foreground underline underline-offset-2 hover:text-white transition-colors"
                     >
                       npm
                     </a>
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-neutral-700 mt-1">○</span>
+                  <span className="text-foreground mt-1">○</span>
                   <span>
-                    <span className="text-neutral-300">▲</span>
+                    <span className="text-foreground">▲</span>
                     <a
                       href="https://vercel.com/oss"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-neutral-200 underline underline-offset-2 hover:text-white transition-colors ml-1"
+                      className="text-foreground underline underline-offset-2 hover:text-white transition-colors ml-1"
                     >
                       Vercel OSS Program
                     </a>{" "}

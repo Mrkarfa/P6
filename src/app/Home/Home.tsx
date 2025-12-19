@@ -164,7 +164,7 @@ const Home = () => {
     <section
       id="home"
       ref={containerRef}
-      className="min-h-screen bg-neutral-950 text-white py-20 px-4"
+      className="min-h-screen bg-background text-foreground relative w-full py-20 px-4"
     >
       <div className="max-w-2xl mx-auto">
         {/* Logo */}
@@ -183,7 +183,7 @@ const Home = () => {
         >
           {/* Avatar with Flag */}
           <div className="relative">
-            <div className="w-24 h-24 md:w-28 md:h-28 rounded-full overflow-hidden border-2 border-neutral-700">
+            <div className="w-24 h-24 md:w-28 md:h-28 rounded-full overflow-hidden border-2 border-foreground">
               <Image
                 src="/avatar.png"
                 alt="Profile Avatar"
@@ -202,7 +202,7 @@ const Home = () => {
 
           {/* Name and Title */}
           <div className="flex-1">
-            <p className="text-xs text-neutral-500 mb-1 font-mono">
+            <p className="text-xs text-foreground mb-1 font-mono">
               port.sk.dev.com // full_stack
             </p>
             <div className="flex items-center gap-2 mb-1">
@@ -214,9 +214,22 @@ const Home = () => {
               >
                 <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              <span className="text-neutral-500">🔊</span>
+              <span
+                className="text-foreground cursor-pointer hover:scale-110 transition-transform inline-block"
+                title="Click to hear pronunciation"
+                onMouseEnter={() => {
+                  const utterance = new SpeechSynthesisUtterance(
+                    "Souvik Karfa"
+                  );
+                  utterance.lang = "en-US";
+                  utterance.rate = 0.9;
+                  window.speechSynthesis.speak(utterance);
+                }}
+              >
+                🔊
+              </span>
             </div>
-            <p className="text-sm text-neutral-400">Open Source Contributor</p>
+            <p className="text-sm text-foreground">Open Source Contributor</p>
           </div>
         </div>
 
@@ -231,9 +244,9 @@ const Home = () => {
               {infoItems.map((item, index) => (
                 <div
                   key={index}
-                  className="flex items-center gap-3 text-sm text-neutral-400"
+                  className="flex items-center gap-3 text-sm text-foreground"
                 >
-                  <span className="text-neutral-500">{item.icon}</span>
+                  <span className="text-foreground">{item.icon}</span>
                   <span>{item.text}</span>
                 </div>
               ))}
@@ -244,9 +257,9 @@ const Home = () => {
               {infoItemsRight.map((item, index) => (
                 <div
                   key={index}
-                  className="flex items-center gap-3 text-sm text-neutral-400"
+                  className="flex items-center gap-3 text-sm text-foreground"
                 >
-                  <span className="text-neutral-500">{item.icon}</span>
+                  <span className="text-foreground">{item.icon}</span>
                   <span>{item.text}</span>
                 </div>
               ))}
@@ -271,11 +284,13 @@ const Home = () => {
                   {link.icon}
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-white">{link.name}</p>
-                  <p className="text-xs text-neutral-500">{link.username}</p>
+                  <p className="text-sm font-medium text-foreground">
+                    {link.name}
+                  </p>
+                  <p className="text-xs text-foreground">{link.username}</p>
                 </div>
               </div>
-              <ExternalLink className="h-4 w-4 text-neutral-600 group-hover:text-neutral-400 transition-colors" />
+              <ExternalLink className="h-4 w-4 text-foreground group-hover:text-neutral-400 transition-colors" />
             </a>
           ))}
         </div>
